@@ -1,0 +1,94 @@
+<po-page-default>
+
+  <!-- Navbar Component -->
+  <po-navbar
+    [p-logo]="logoUrl"
+    [p-logo-alt]="logoAlt"
+    [p-shadow]="navbarShadow">
+  </po-navbar>
+
+  <!-- Main Content Wrapper to ensure spacing and layout -->
+  <div class="content-wrapper">
+    <form [formGroup]="myForm">
+
+      <!-- First Widget with LabelNow Input -->
+      <po-widget>
+        <span class="po-md-12 po-mb-1">{{ myForm.get('labelNow')?.value }}</span>
+        <span class="po-md-12">João Silva / ABC-1234</span>
+      </po-widget>
+
+      <!-- Second Widget with Multiselect -->
+      <po-widget p-title="Equipe">
+        <div class="po-row">
+          <po-multiselect
+            class="po-md-12"
+            formControlName="contact"
+            (p-change)="changeOptions($event)"
+            p-field-value="id"
+            p-hide-select-all="true"
+            p-field-label="name"
+            p-filter-service="https://po-sample-api.onrender.com/v1/people"
+            p-icon="ph ph-user"
+            p-placeholder="Selecione o colaborador"
+            required
+          >
+          </po-multiselect>
+        </div>
+      </po-widget>
+
+      <!-- Third Widget with Combo and Textarea -->
+      <po-widget p-title="Serviço">
+        <!-- Form Control for service (po-combo) -->
+        <po-combo
+          name="combo"
+          formControlName="service"
+          p-placeholder="Selecione o serviço"
+          [p-options]="[{ value: 'Serviço 1' }, { value: 'Serviço 2' }]"
+          required
+        >
+        </po-combo>
+        <po-textarea name="textarea" p-label="Detalhes" [p-rows]="6"></po-textarea>
+      </po-widget>
+
+      <!-- Button to Start Route -->
+      <po-button
+        class="po-md-12"
+        p-kind="primary"
+        p-label="Iniciar Rota"
+        [p-disabled]="myForm.invalid || startedRoute"
+        (p-click)="onHandleStartRoute('startRoute')"
+      ></po-button>
+
+      <!-- Button Groups -->
+      <po-button-group class="po-md-12" [p-buttons]="buttons1"></po-button-group>
+      <po-button-group class="po-md-12" [p-buttons]="buttons2"></po-button-group>
+
+
+      <po-button
+        class="po-md-12"
+        p-kind="tertiary"
+        p-label="Coletar Assinaturas"
+        [p-disabled]="true"
+        (p-click)="onHandleStartRoute('startRoute')"
+      ></po-button>
+
+
+
+    </form>
+  </div>
+
+  <!-- Modal (Hidden by default) -->
+  <po-modal #modal
+    p-title="Você deseja iniciar sua rota?"
+    [p-primary-action]="confirm" [p-secondary-action]="close">
+
+    <po-dynamic-view
+      [p-fields]="[{ property: 'data' }, {property: 'equipe',}]"
+      [p-value]="getDynamicViewValues()">
+    </po-dynamic-view>
+
+  </po-modal>
+
+</po-page-default>
+
+

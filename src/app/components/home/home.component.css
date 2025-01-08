@@ -1,0 +1,26 @@
+/* Style to ensure proper layout of content */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px; /* Adjust this according to your navbar height */
+  padding: 20px;
+}
+
+po-widget, po-button-group {
+  margin-top: 20px; /* Add spacing between widgets */
+}
+
+po-button {
+  margin-top: 20px; /* Add space between buttons */
+}
+
+/* Optional: Ensure navbar has defined height */
+po-navbar {
+  height: 60px; /* Adjust based on actual navbar height */
+}
+
+/* Ensure modal has space and is not hidden behind content */
+po-modal {
+  z-index: 1000; /* If using modal, ensure it doesn't get hidden behind content */
+}
+

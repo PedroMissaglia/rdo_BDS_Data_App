@@ -91,4 +91,28 @@
 
 </po-page-default>
 
+<po-modal #modalTwo
+  p-title="Câmera"
+  [p-primary-action]="close" [p-secondary-action]="close">
+
+
+    <!-- Video element to display the camera feed -->
+    <div class="po-text-center">
+      <video #videoElement autoplay></video>
+
+      <!-- Canvas element to capture the photo -->
+      <canvas #canvasElement style="display: none;"></canvas>
+
+
+    <div class="po-text-center">
+      <po-button (p-click)="capturePhoto()" p-label="Capturar foto">Capturar foto</po-button>
+    </div>
+    <!-- Button to trigger the photo capture -->
+
+
+    <!-- Optionally, display the captured image -->
+    <img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Photo" />
+  </div>
+
+</po-modal>
 

@@ -89,6 +89,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
 
   @ViewChild(PoModalComponent, { static: true }) poModal: PoModalComponent | undefined;
+  @ViewChild('modalTwo', { static: true }) poModalCamera: PoModalComponent | undefined;
   multiselect: Array<string> = ['1495831666871', '1405833068599'];
   columns: Array<PoTableColumn> = [
     { property: 'value', label: 'id' },
@@ -149,8 +150,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Open the camera
   openCamera(): void {
+
+    const constraints = {
+      video: {
+        facingMode: 'environment' // 'user' for front camera, 'environment' for rear camera
+      }
+    };
+
+   this.poModalCamera?.open();
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
+      navigator.mediaDevices.getUserMedia(constraints)
         .then((stream) => {
           this.videoElement.nativeElement.srcObject = stream;
         })
@@ -163,6 +172,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.getGeoLocation();
   }
+
+
+
+
 
   // Capture the photo
   capturePhoto(): void {

@@ -76,6 +76,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
 
 
+  confirmCamera: PoModalAction = {
+    action: () => {
+      this.poModalCamera?.close();
+      this.startedRoute = true
+    },
+    label: 'Confirmar'
+  };
+
+
   heroes: Array<any> = [];
 
   // Logo and alternative text

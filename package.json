@@ -21,8 +21,6 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
-    "@po-ui/ng-components": "^17.26.9",
-    "@po-ui/ng-templates": "^17.26.9",
     "concurrently": "^7.0.0",
     "json-server": "^1.0.0-beta.3",
     "rxjs": "~7.8.0",
